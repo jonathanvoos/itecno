@@ -1,0 +1,65 @@
+let moedas = 0;
+let claims = 0;
+ 
+console.log('%cBOT INICIADO!!!', "background: #66ff66;font-size: 30px;");
+console.log('ITECNO AJUDANDO VOCEê');
+ 
+ 
+if(document.querySelectorAll('.minutes .digits')[0].innerText == "" && document.querySelectorAll('.seconds .digits')[0].innerText == "") {
+	document.querySelectorAll('.roll-button')[0].click();
+	setTimeout(function() {
+		let coins = parseFloat(document.querySelectorAll('.result')[0].innerText.replace('Recebeu ', ''));
+		moedas += coins;
+		claims ++;
+		console.log('Moedas coletadas com sucesso %c+' + coins.toFixed(8), "background: #66ff66;font-size: 30px;");
+ 
+		setInterval(function() {
+			if(document.getElementsByClassName( "roll-button" )) {
+				document.querySelectorAll('.roll-button')[0].click();
+				setTimeout(function() {
+					let coins = parseFloat(document.querySelectorAll('.result')[0].innerText.replace('Recebeu ', ''));
+					moedas += coins;
+					claims ++;
+					console.log('Moedas coletadas com sucesso %c+' + coins.toFixed(8), "background: #66ff66;font-size: 30px;");
+				}, 5000);
+			} else {
+ 
+			}
+		}, 3605000);
+	}, 5000);
+} else {
+	let minutes = parseInt(document.querySelectorAll('.minutes .digits')[0].innerText);
+	let seconds = parseInt(document.querySelectorAll('.seconds .digits')[0].innerText);
+ 
+	console.log('%cEsperando ' + minutes + ' minutos e ' + seconds + ' segundos para recolher!', "color: rgb(217, 59, 48); font-size: 25px;");
+ 
+	let miliseconds = (((minutes * 60) * 1000) + (seconds * 1000)) + 5000;
+ 
+	setTimeout(function() {
+		document.querySelectorAll('.roll-button')[0].click();
+		setTimeout(function() {
+			let coins = parseFloat(document.querySelectorAll('.result')[0].innerText.replace('Recebeu ', ''));
+			moedas += coins;
+			claims ++;
+			console.log('Moedas coletadas com sucesso %c+' + coins.toFixed(8), "background: #66ff66;font-size: 30px;");
+ 
+			setInterval(function() {
+				if(document.getElementsByClassName( "roll-button" )) {
+					document.querySelectorAll('.roll-button')[0].click();
+					setTimeout(function() {
+						let coins = parseFloat(document.querySelectorAll('.result')[0].innerText.replace('Recebeu ', ''));
+						moedas += coins;
+						claims ++;
+						console.log('Moedas coletadas com sucesso %c+' + coins.toFixed(8), "background: #66ff66;font-size: 30px;");
+					}, 5000);
+ 
+					if(claims >= 2 && claims % 2 == 0) {
+						console.log('Total coletado pelo bot: %c+' + moedas.toFixed(8), "background: #66ff66;font-size: 30px;");
+					}
+				} else {
+ 
+				}
+			}, 3605000);
+		}, 5000);
+	}, miliseconds);
+};
